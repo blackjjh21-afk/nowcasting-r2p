@@ -1,0 +1,58 @@
+# Python and notebook caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+build/
+dist/
+*.egg-info/
+
+# Environments and local configuration
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+*.local.yml
+*.local.json
+
+# Credentials and keys
+*.key
+*.pem
+*credential*
+*secret*
+*token*
+
+# Private observations and prepared data
+data/private/
+data/raw/
+data/preprocessed/
+data/spatial/
+data/result/
+data/results/
+
+# Models and large numerical artifacts
+checkpoints/
+outputs/
+artifacts/
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
+*.zarr/
+*.npy
+*.npz
+*.tif
+*.tiff
+*.nc
+
+# Logs, temporary files and operating-system metadata
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,89 @@
+{
+  "schema": "nowcastnet-hsr-field-v5",
+  "project_root": ".",
+  "experiment_root": "outputs/nowcastnet_field",
+  "cache_root": "cache/nowcastnet_field",
+  "radar_root": "data/private/radar_4km10min_tiff",
+  "hsr_cache_root": "data/private/hsr_monthly_cache",
+  "max_open_hsr_months": 16,
+  "train_years": [
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "validation_years": [
+    2023
+  ],
+  "test_years": [
+    2024,
+    2025
+  ],
+  "months": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "train_stride_minutes": 10,
+  "validation_stride_minutes": 10,
+  "model": {
+    "grid_size": 256,
+    "input_steps": 7,
+    "output_steps": 18,
+    "base_channels": 32,
+    "noise_channels": 32,
+    "rate_scale": 128.0,
+    "rain_rate_cap": 128.0
+  },
+  "field": {
+    "seed": 40,
+    "batch_size": 16,
+    "validation_batch_size": 1,
+    "num_workers": 4,
+    "pin_memory": true,
+    "prefetch_factor": 2,
+    "threads": 4,
+    "precision": "bf16",
+    "evolution_epochs": 30,
+    "generator_epochs": 30,
+    "patience": 8,
+    "evolution_iterations": 300000,
+    "generator_iterations": 500000,
+    "lr_scheduler": "plateau",
+    "lr_monitor": "validation_macro_csi",
+    "lr_patience": 4,
+    "lr_factor": 0.1,
+    "lr_min": 0.0,
+    "lr_eps": 1e-08,
+    "importance_sampling": true,
+    "sampling_epsilon": 1e-06,
+    "adam_betas": [
+      0.9,
+      0.999
+    ],
+    "min_delta": 0.0,
+    "evolution_lr": 0.001,
+    "generator_lr": 3e-05,
+    "discriminator_lr": 3e-05,
+    "discriminator_input_scale": 1.0,
+    "motion_weight": 0.01,
+    "adversarial_weight": 6.0,
+    "pool_weight": 20.0,
+    "pool_samples": 4,
+    "gradient_clip": null,
+    "log_every": 100
+  },
+  "evaluation": {
+    "spatial_resolution_km": 4.0
+  },
+  "forecast_product": {
+    "kind": "mean",
+    "ensemble_members": 4,
+    "noise_seed": 20261015,
+    "rule": "sha256(seed,issue_ns,member)",
+    "nonnegative": "clamp each member before averaging",
+    "spectral_state": "restore noise-projector u/v after each four-member product"
+  },
+  "test_issue_policy": "hsr_available_windows"
+}

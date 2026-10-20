@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this archived software version and the associated paper."
+type: software
+title: "Gauge-referenced hourly rainfall nowcasting in South Korea: Comparing direct radar-to-point and field-first forecast routes"
+authors:
+  - family-names: "Jung"
+    given-names: "Jaehee"
+    affiliation: "Earth & Tech Inc."
+    orcid: "https://orcid.org/0009-0000-2112-0771"
+  - family-names: "Roh"
+    given-names: "Joon-Woo"
+    affiliation: "Earth & Tech Inc."
+    email: "neo@earthntech.co.kr"
+    orcid: "https://orcid.org/0000-0003-0337-4019"
+repository-code: "https://github.com/blackjjh21-afk/nowcasting-r2p"
+version: "1.0.0"
+date-released: "2026-10-20"
+doi: "10.5281/zenodo.23489108"
+url: "https://github.com/blackjjh21-afk/nowcasting-r2p"

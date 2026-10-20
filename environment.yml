@@ -1,0 +1,23 @@
+name: r2p-4km10min-release
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - numpy=1.26.4
+  - pandas=2.2.2
+  - scipy=1.13.1
+  - h5py=3.11.0
+  - tifffile=2024.5.22
+  - opencv=4.10
+  - xarray=2023.6.0
+  - pyproj=3.6.1
+  - netcdf4=1.7.4
+  - pytest=7.4.4
+  - setuptools=69.5.1
+  - wheel=0.43.0
+  - pip=24.0
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch==2.6.0+cu124
+      - pysteps==1.21.1

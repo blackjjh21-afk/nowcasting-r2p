@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "direct-r2p-4km10min"
+version = "1.0.0"
+description = "Models, training, prediction and evaluation for hourly rainfall nowcasting"
+readme = "README.md"
+authors = [
+  { name = "Jaehee Jung" },
+  { name = "Joon-Woo Roh", email = "neo@earthntech.co.kr" },
+]
+requires-python = ">=3.12"
+dependencies = [
+  "numpy==1.26.4",
+  "pandas==2.2.2",
+  "tifffile==2024.5.22",
+  "h5py==3.11.0",
+  "xarray==2023.6.0",
+  "pyproj==3.6.1",
+  "netCDF4==1.7.4",
+  "torch==2.6.0",
+  "scipy==1.13.1",
+]
+
+[project.optional-dependencies]
+# pySTEPS does not declare OpenCV because several motion backends are
+# optional, but this repository's frozen Lucas–Kanade route requires it.
+pysteps = ["pysteps==1.21.1", "opencv-python-headless==4.10.0.84"]
+test = ["pytest==7.4.4"]
+
+[project.scripts]
+r2p-4km10min = "r2p_4km10min.run_vanilla_r2p:main"
+r2p-radar-only = "evaluation.radar_only_comparison:main"
+r2p-station-dropout = "evaluation.station_dropout_comparison:main"
+prepare-kma-hsr-4km10min = "preprocessing.prepare_kma_hsr_4km10min:main"
+pysteps-4km10min = "pysteps_adapter.cli:main"
+cnn-readout-4km10min = "cnn_readout.workflow:main"
+exprecast-export-adapter = "exprecast_adapter.adapter:main"
+exprecast-adapted = "exprecast_adapted.workflow:main"
+exprecast-select-rn60 = "exprecast_adapted.selection:main"
+nowcastnet-hsr-field = "nowcastnet_hsr.field_cli:cli_main"
+nowcastnet-export-bank = "nowcastnet_hsr.export_bank:main"
+nowcastnet-cnn-prepare = "nowcastnet_hsr.cnn_adapter:main"
+r2p-select-csi3 = "common.reselection:main"
+jhrs-verify = "jhrs_verification.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
